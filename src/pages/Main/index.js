@@ -1,10 +1,39 @@
-import React from 'react';
-import {View} from 'react-native';
+import React, { Component } from 'react';
 
-// import { Container } from './styles';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
-export default function Main() {
-  return <View />;
+import { Container, Form, Input, SubmitButton } from './styles';
+
+export default class Main extends Component {
+  state = {
+    newUser: '',
+    users: [],
+  };
+
+  handleAddUser = () => {
+    console.tron.log(this.state.newUser);
+  };
+
+  render() {
+    const { users, newUser } = this.state;
+
+    return (
+      <Container>
+        <Form>
+          <Input
+            autoCorrect={false}
+            autoCapitalize="none"
+            placeholder="Adicionar Usuário"
+            value={newUser}
+            onChangeText={text => this.setState({ newUser: text })}
+          />
+          <SubmitButton onPress={this.handleAddUser}>
+            <Icon name="add" size={20} />
+          </SubmitButton>
+        </Form>
+      </Container>
+    );
+  }
 }
 
 Main.navigationOptions = {
